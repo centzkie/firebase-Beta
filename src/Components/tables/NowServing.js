@@ -39,6 +39,9 @@ export function NowServing() {
           <th style={{ backgroundColor: "#800000", color: "white" }}>
             Queue Line Number
           </th>
+          <th style={{ backgroundColor: "#800000", color: "white" }}>
+            Name
+          </th>
         </tr>
       </thead>
       <tbody>

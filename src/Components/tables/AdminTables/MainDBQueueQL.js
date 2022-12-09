@@ -40,6 +40,14 @@ export default function MainDBQueueQL() {
 
   const deleteUser = async(email) => {
     const userDoc = doc(db, "user", email)
+    if(window.confirm("Are you sure to want to delete this transaction ?")){
+      await deleteDoc(userDoc);
+      viewTable();
+    }
+  }
+
+  const directDeleteUser = async(email) => {
+    const userDoc = doc(db, "user", email)
     await deleteDoc(userDoc);
     viewTable();
   }
@@ -49,8 +57,7 @@ export default function MainDBQueueQL() {
     const docRef = doc(db, "user", id);
     const snapshot = await getDoc(docRef);
     await addDoc(userCollection2, {Name: snapshot.data().Name, Transaction: snapshot.data().Transaction, Email: snapshot.data().Email, ID: snapshot.data().ID, timestamp: serverTimestamp()});
-    
-    deleteUser(id);
+    directDeleteUser(id);
   } 
 
   const addUser = async(id) => {

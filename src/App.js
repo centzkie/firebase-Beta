@@ -13,6 +13,7 @@ import History from "./Pages/HistoryDB";
 import GenerateQLN from "./Pages/GenerateQLN";
 import Transaction from "./Pages/Transaction";
 import Qln from "./Pages/Qln";
+import PrivateRoutes from "./PrivateRoutes";
 
 const App = () => {
   return (
@@ -26,9 +27,12 @@ const App = () => {
         <Route path="/transactions" element={<Transaction />} />
         {/* Routes for Admin only */}
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/main" element={<MainDB />} />
-        <Route path="/announcement" element={<AnnouncementDB />} />
-        <Route path="/history" element={<History />} />
+        <Route element={<PrivateRoutes/>}>
+          <Route path="/main" element={<MainDB />} />
+          <Route path="/announcement" element={<AnnouncementDB />} />
+          <Route path="/history" element={<History />} />
+        </Route>
+        
       </Routes>
     </div>
   );
